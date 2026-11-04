@@ -1,0 +1,3 @@
+/** Base URL of the backend REST API, taken from the environment. */
+export const API_BASE_URL: string =
+  import.meta.env.VITE_API_BASE_URL ?? 'http://localhost:3000';
