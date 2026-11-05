@@ -1,0 +1,35 @@
+name: Nightly browsers (non-gating)
+
+# Firefox + WebKit e2e (DEC-050 browser matrix). Informational: not a required
+# check. Chromium is the gating e2e job in ci.yml.
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  e2e-cross-browser:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    env:
+      E2E_ALL_BROWSERS: '1'
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npx playwright install --with-deps firefox webkit
+      - run: npm run e2e -- --project=firefox --project=webkit
+      - uses: actions/upload-artifact@v7
+        if: always()
+        with:
+          name: playwright-report-cross-browser
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore

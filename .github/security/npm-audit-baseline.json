@@ -1,0 +1,11 @@
+{
+  "_comment": "Advisories present when the QA harness was stood up (BL-08 baseline). The gate fails only on high/critical advisories NOT listed here. Fix these via /dev:build --vulnerable repo=frontend, then remove them from this file.",
+  "recorded": "2026-11-05",
+  "advisories": [
+    {
+      "url": "https://github.com/advisories/GHSA-g3hv-75wg-m249",
+      "package": "minimatch",
+      "severity": "moderate"
+    }
+  ]
+}

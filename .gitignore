@@ -2,6 +2,9 @@ node_modules
 dist
 dist-ssr
 coverage
+reports
+playwright-report
+test-results
 *.local
 *.tsbuildinfo
 # env / secrets
